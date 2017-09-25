@@ -1,0 +1,24 @@
+{
+  "name": "gm99",
+  "version": "1.0.0",
+  "description": "gm99跨平台用戶端",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc&&webpack",
+    "start": "electron ."
+  },
+  "author": "曾德雄(cedriccefc2002@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.7.6"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/jquery": "^3.2.12",
+    "@types/node": "^8.0.30",
+    "@types/webpack": "^3.0.11",
+    "jquery": "^3.2.1",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
+  }
+}
