@@ -1,5 +1,7 @@
-
+import * as url from "url";
 import * as $ from "jquery"
+import 'bootstrap';
+
 async function ready(webview: Electron.WebviewTag) {
     return new Promise<void>((resolve, reject) => {
         let removeEventFn = () => {
@@ -39,8 +41,27 @@ $(async () => {
     const Default_Url = "https://passport.gm99.com/";
     //"https://www.gm99.com/play_games/play/server/naruto/id/57"
     const webview = $('#gm99').get(0) as Electron.WebviewTag;
-    webview.addEventListener('new-window', (event) => {
-        webview.loadURL(event.url)
+
+    webview.addEventListener('load-commit', (event) => {
+        console.log(`[event][load-commit`);
+    })
+    // webview.addEventListener('update-target-url', (event) => {
+    //     console.log(`[event][update-target-url][${event.url}]`);
+    // })
+    webview.addEventListener('new-window', async (event) => {
+        console.log(`[event][new-window][${event.url}]`);
+        const new_url = url.parse(event.url)
+        if (new_url.hostname === "www.facebook.com") {
+            /**
+             * facebook plugins error
+             */
+            return;
+        }
+        try {
+            await loadURL(webview, event.url);
+        } catch (error) {
+            console.error(error);
+        }
         // const protocol = require('url').parse(e.url).protocol
         // if (protocol === 'http:' || protocol === 'https:') {
         //   shell.openExternal(e.url)
