@@ -37,11 +37,8 @@ async function loadURL(webview: Electron.WebviewTag, url: string) {
     });
 }
 
-$(async () => {
-    const Default_Url = "https://passport.gm99.com/";
-    //"https://www.gm99.com/play_games/play/server/naruto/id/57"
-    const webview = $('#gm99').get(0) as Electron.WebviewTag;
-
+const Default_Url = "https://passport.gm99.com/";
+async function Init(webview: Electron.WebviewTag) {
     webview.addEventListener('load-commit', (event) => {
         console.log(`[event][load-commit`);
     })
@@ -74,6 +71,13 @@ $(async () => {
     //     $('#login-username').val('');
     //     $('#login-password').val('');
     // `)
+}
+
+$(async () => {
+    //"https://www.gm99.com/play_games/play/server/naruto/id/57"
+    $('.gm99').each((index, element) => {
+        Init(element as Electron.WebviewTag)
+    })
 });
 
 
