@@ -1,11 +1,16 @@
 @import "../node_modules/normalize.css/normalize.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap-theme.min.css";
+
+html, body {
+    overflow-y:hidden;
+}
+
 html, body, #content, webview {
     width: 100%;
     height: 100%;
 }
 
-#tab1, #tab2, #tab3, #tab4, #tab5 , #tab6, #tab8, #tab7{
+#tab1, #tab2, #tab3, #tab4, #tab5, #tab6, #tab8, #tab7 {
     height: 100%;
 }

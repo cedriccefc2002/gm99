@@ -10349,7 +10349,7 @@ function ready(webview) {
             };
             let readyFn = (event) => {
                 removeEventFn();
-                //console.info(`dom-ready`);
+                status(`dom-ready`);
                 resolve();
             };
             webview.addEventListener('dom-ready', readyFn);
@@ -10365,12 +10365,10 @@ function loadURL(webview, url) {
             };
             let resolveFn = (event) => {
                 removeEventFn();
-                //console.dir(event);
                 resolve();
             };
             let rejectFn = (event) => {
                 removeEventFn();
-                //console.dir(event);
                 reject(event);
             };
             webview.addEventListener('did-finish-load', resolveFn);
@@ -10383,13 +10381,13 @@ const Default_Url = "https://passport.gm99.com/";
 function Init(webview) {
     return __awaiter(this, void 0, void 0, function* () {
         webview.addEventListener('load-commit', (event) => {
-            console.log(`[event][load-commit`);
+            status(`[event][load-commit`);
         });
-        // webview.addEventListener('update-target-url', (event) => {
-        //     console.log(`[event][update-target-url][${event.url}]`);
-        // })
+        webview.addEventListener('update-target-url', (event) => {
+            status(`[event][update-target-url][${event.url}]`);
+        });
         webview.addEventListener('new-window', (event) => __awaiter(this, void 0, void 0, function* () {
-            console.log(`[event][new-window][${event.url}]`);
+            status(`[event][new-window][${event.url}]`);
             const new_url = url.parse(event.url);
             if (new_url.hostname === "www.facebook.com") {
                 /**
@@ -10417,8 +10415,24 @@ function Init(webview) {
         // `)
     });
 }
+function status(message) {
+    return __awaiter(this, void 0, void 0, function* () {
+        $("#status").text(message);
+    });
+}
+function resize() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let content = $('#content').height();
+        let content_part_1 = $('#content_part_1').height();
+        let content_part_3 = $('#content_part_3').height();
+        if (content && content_part_1 && content_part_3) {
+            $('#content_part_2').height(content - content_part_1 - content_part_3);
+        }
+    });
+}
 $(() => __awaiter(this, void 0, void 0, function* () {
-    //"https://www.gm99.com/play_games/play/server/naruto/id/57"
+    window.addEventListener('resize', resize);
+    yield resize();
     $('.gm99').each((index, element) => {
         Init(element);
     });

@@ -8,47 +8,48 @@
 
 <body>
     <div id="content">
-        <div style="height:100%">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tab1" aria-controls="home" role="tab" data-toggle="tab">分頁1</a></li>
-                <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">分頁2</a></li>
-                <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">分頁3</a></li>
-                <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">分頁4</a></li>
-                <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">分頁5</a></li>
-                <li role="presentation"><a href="#tab6" aria-controls="tab3" role="tab" data-toggle="tab">分頁6</a></li>
-                <li role="presentation"><a href="#tab7" aria-controls="tab4" role="tab" data-toggle="tab">分頁7</a></li>
-                <li role="presentation"><a href="#tab8" aria-controls="tab5" role="tab" data-toggle="tab">分頁8</a></li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content" style="height:90%">
-                <div role="tabpanel" class="tab-pane active" id="tab1">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_1" plugins autosize></webview>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab2">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_2" plugins autosize></webview>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab3">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_3" plugins autosize></webview>
-
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab4">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_4" plugins autosize></webview>
-
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab5">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_5" plugins autosize></webview>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab6">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_6" plugins autosize></webview>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab7">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_7" plugins autosize></webview>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tab8">
-                    <webview class="gm99" src="about:blank" partition="persist:gm99_8" plugins autosize></webview>
-                </div>
+        <!-- Nav tabs -->
+        <ul id="content_part_1" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab1" aria-controls="home" role="tab" data-toggle="tab">分頁1</a></li>
+            <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">分頁2</a></li>
+            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">分頁3</a></li>
+            <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">分頁4</a></li>
+            <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">分頁5</a></li>
+            <li role="presentation"><a href="#tab6" aria-controls="tab3" role="tab" data-toggle="tab">分頁6</a></li>
+            <li role="presentation"><a href="#tab7" aria-controls="tab4" role="tab" data-toggle="tab">分頁7</a></li>
+            <li role="presentation"><a href="#tab8" aria-controls="tab5" role="tab" data-toggle="tab">分頁8</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div id="content_part_2" class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab1">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_1" plugins autosize></webview>
             </div>
+            <div role="tabpanel" class="tab-pane" id="tab2">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_2" plugins autosize></webview>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab3">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_3" plugins autosize></webview>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab4">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_4" plugins autosize></webview>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab5">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_5" plugins autosize></webview>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab6">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_6" plugins autosize></webview>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab7">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_7" plugins autosize></webview>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab8">
+                <webview class="gm99" src="about:blank" partition="persist:gm99_8" plugins autosize></webview>
+            </div>
+        </div>
+        <div id="content_part_3">
+            <div class="alert alert-success" role="alert" id="status">...</div>
         </div>
     </div>
 </body>

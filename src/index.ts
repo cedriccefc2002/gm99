@@ -9,7 +9,7 @@ async function ready(webview: Electron.WebviewTag) {
         }
         let readyFn = (event: Electron.Event, ) => {
             removeEventFn();
-            //console.info(`dom-ready`);
+            status(`dom-ready`);
             resolve();
         }
         webview.addEventListener('dom-ready', readyFn);
@@ -23,12 +23,10 @@ async function loadURL(webview: Electron.WebviewTag, url: string) {
         }
         let resolveFn = (event: Electron.Event) => {
             removeEventFn();
-            //console.dir(event);
             resolve();
         }
         let rejectFn = (event: Electron.Event) => {
             removeEventFn();
-            //console.dir(event);
             reject(event);
         }
         webview.addEventListener('did-finish-load', resolveFn);
@@ -40,13 +38,13 @@ async function loadURL(webview: Electron.WebviewTag, url: string) {
 const Default_Url = "https://passport.gm99.com/";
 async function Init(webview: Electron.WebviewTag) {
     webview.addEventListener('load-commit', (event) => {
-        console.log(`[event][load-commit`);
+        status(`[event][load-commit`);
     })
-    // webview.addEventListener('update-target-url', (event) => {
-    //     console.log(`[event][update-target-url][${event.url}]`);
-    // })
+    webview.addEventListener('update-target-url', (event) => {
+        status(`[event][update-target-url][${event.url}]`);
+    })
     webview.addEventListener('new-window', async (event) => {
-        console.log(`[event][new-window][${event.url}]`);
+        status(`[event][new-window][${event.url}]`);
         const new_url = url.parse(event.url)
         if (new_url.hostname === "www.facebook.com") {
             /**
@@ -73,11 +71,25 @@ async function Init(webview: Electron.WebviewTag) {
     // `)
 }
 
+async function status(message: string) {
+    $("#status").text(message);
+}
+
+async function resize() {
+    let content = $('#content').height();
+    let content_part_1 = $('#content_part_1').height();
+    let content_part_3 = $('#content_part_3').height();
+    if (content && content_part_1 && content_part_3) {
+        $('#content_part_2').height(content - content_part_1 - content_part_3);
+    }
+}
+
 $(async () => {
-    //"https://www.gm99.com/play_games/play/server/naruto/id/57"
+    window.addEventListener('resize', resize);
+    await resize()
     $('.gm99').each((index, element) => {
         Init(element as Electron.WebviewTag)
-    })
+    });
 });
 
 
