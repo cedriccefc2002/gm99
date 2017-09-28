@@ -1,29 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * bindingHandlerBase
- * ko 自訂元件的基礎
- * */
 const Trigger = require("./Trigger");
 const ko = require("knockout");
 const viewModel = require("./Model");
 const viewController = require("./Controller");
 var BindingHandler;
 (function (BindingHandler) {
-    /**
-     * element
-     * 事件
-     * initEvent
-     * updateEvent
-     * destroyEvent
-     * */
     class Model extends viewModel.Model.ViewModel {
         constructor() {
             super(...arguments);
             this.initElement = ko.observable();
             this.updateElement = ko.observable();
             this.destroyElement = ko.observable();
-            //Event
             this.initElementEvent = Trigger.Trigger.observableEvent();
             this.updateElementEvent = Trigger.Trigger.observableEvent();
             this.destroyElementEvent = Trigger.Trigger.observableEvent();

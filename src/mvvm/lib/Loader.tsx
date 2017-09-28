@@ -62,6 +62,11 @@ export namespace Loader {
         if (pool.has(key)) { } else {
             pool.set(key, new ViewLoader(config));
         }
-        return pool.get(key);
+        let loader = pool.get(key);
+        if (loader) {
+            return loader;
+        } else {
+            throw new Error(`can't find loader ${key}`)
+        }
     }
 }

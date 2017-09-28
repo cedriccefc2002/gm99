@@ -8,9 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * viewController
- * */
 const $ = require("jquery");
 const ko = require("knockout");
 const React = require("react");
@@ -19,47 +16,35 @@ const Model_1 = require("./Model");
 const Trigger_1 = require("./Trigger");
 var Controller;
 (function (Controller) {
-    // let GlobalId = 0;
-    /**
-     * 建置流程
-     * init -> render -> bind
-     * 移除流程
-     * unbind -> clear -> destroy
-     */
     class ViewController {
-        constructor(name, model, contentFn, bindSelf = false, elementString = `#${name}`) {
+        constructor(name, model, contentFn = () => __awaiter(this, void 0, void 0, function* () { return React.createElement("div", null); }), bindSelf = false, elementString = `#${name}`) {
             this.model = model;
             this.contentFn = contentFn;
             this.elementString = elementString;
             this.bindSelf = bindSelf;
             this.controllerName = name;
         }
-        /** 初始化開始*/
         beforeInit(model, Option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /** 初始化結束*/
         afterInit(model, Option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**移除開始 */
         beforeDestroy(model, Option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**移除結束 */
         afterDestroy(model, Option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
                 yield model.remove();
             });
         }
-        /**before Render */
         beforeRender(model, option, content, parentElement, elementString) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
@@ -71,43 +56,36 @@ var Controller;
                 return [html, element];
             });
         }
-        /**after Render */
         afterRender(model, option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**before Clear */
         beforeClear(model, option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**after Clear */
         afterClear(model, option) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /** 綁定開始*/
         beforeBind(model, option, element) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /** 綁定結束*/
         afterBind(model, option, element) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**解除綁定開始 */
         beforeUnbind(model, option, element) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
             });
         }
-        /**解除綁定結束 */
         afterUnbind(model, option, element) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield Trigger_1.Trigger.wait();
@@ -116,13 +94,11 @@ var Controller;
         EachModule(fn) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (this.model.modules.length > 0) {
-                    //相容舊版模組陣列
                     for (let mod of this.model.modules) {
                         yield fn(mod);
                     }
                 }
                 else {
-                    //模組Map
                     for (let mod of this.model.moduleMap.values()) {
                         yield fn(mod);
                     }
@@ -173,7 +149,7 @@ var Controller;
                     try {
                         this.element.each((index, elem) => {
                             ko.cleanNode(elem);
-                            $(elem).off(); //移除所有事件
+                            $(elem).off();
                         });
                     }
                     catch (error) {
@@ -206,14 +182,8 @@ var Controller;
         }
     }
     Controller.ViewController = ViewController;
-    /**
-     * 建立分頁模組DOM
-     *
-     * @param name 模組名稱
-     * @param stateName 判斷狀態名稱
-     * */
     function PageContent(name, stateName = 'state', index = -1) {
-        return <div key={index} id={name} data-bind={`with: ${name}.model, visible: ${stateName}() == '${name}'`}></div>;
+        return React.createElement("div", { key: index, id: name, "data-bind": `with: ${name}.model, visible: ${stateName}() == '${name}'` });
     }
     Controller.PageContent = PageContent;
     function PageContents(names, stateName = 'state') {
@@ -225,14 +195,8 @@ var Controller;
         return results;
     }
     Controller.PageContents = PageContents;
-    /**
-     * 建立模組DOM
-     *
-     * @param name 模組名稱
-     * @param stateName 判斷狀態名稱
-     * */
     function PartialContent(name) {
-        return <div id={name} data-bind={`with: ${name}.model`}></div>;
+        return React.createElement("div", { id: name, "data-bind": `with: ${name}.model` });
     }
     Controller.PartialContent = PartialContent;
 })(Controller = exports.Controller || (exports.Controller = {}));

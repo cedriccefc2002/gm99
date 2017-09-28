@@ -60,9 +60,6 @@ function Init(webview) {
             status(`[event][new-window][${event.url}]`);
             const new_url = url.parse(event.url);
             if (new_url.hostname === "www.facebook.com") {
-                /**
-                 * facebook plugins error
-                 */
                 return;
             }
             try {
@@ -71,18 +68,9 @@ function Init(webview) {
             catch (error) {
                 console.error(error);
             }
-            // const protocol = require('url').parse(e.url).protocol
-            // if (protocol === 'http:' || protocol === 'https:') {
-            //   shell.openExternal(e.url)
-            // }
         }));
         yield ready(webview);
         yield loadURL(webview, Default_Url);
-        // webview.openDevTools();
-        // webview.getWebContents().executeJavaScript(`
-        //     $('#login-username').val('');
-        //     $('#login-password').val('');
-        // `)
     });
 }
 function status(message) {

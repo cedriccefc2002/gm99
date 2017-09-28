@@ -16,7 +16,6 @@ var Loader;
         constructor(config) {
             this.currentApp = null;
             this.config = config;
-            //this.config.option.Loader = this;
         }
         GetCurrentApp() {
             return this.currentApp;
@@ -24,15 +23,18 @@ var Loader;
         run(appName) {
             return __awaiter(this, void 0, void 0, function* () {
                 yield this.stop();
-                this.currentApp = yield apps.get(appName).createFn(this.config.option);
-                this.config.element.html(`<div id="${appName}"/>`);
-                yield this.config.bindFn("Init" /* Init */);
-                yield this.currentApp.init(this.config.option);
-                yield this.config.bindFn("Render" /* Render */);
-                yield this.currentApp.render(this.config.element);
-                yield this.config.bindFn("Bind" /* Bind */);
-                yield this.currentApp.bind(false);
-                return this.config.bindFn("Finish" /* Finish */);
+                let config = apps.get(appName);
+                if (config) {
+                    this.currentApp = yield config.createFn(this.config.option);
+                    this.config.element.html(`<div id="${appName}"/>`);
+                    yield this.config.bindFn("Init");
+                    yield this.currentApp.init(this.config.option);
+                    yield this.config.bindFn("Render");
+                    yield this.currentApp.render(this.config.element);
+                    yield this.config.bindFn("Bind");
+                    yield this.currentApp.bind(false);
+                    return this.config.bindFn("Finish");
+                }
             });
         }
         stop() {
@@ -57,7 +59,13 @@ var Loader;
         else {
             pool.set(key, new ViewLoader(config));
         }
-        return pool.get(key);
+        let loader = pool.get(key);
+        if (loader) {
+            return loader;
+        }
+        else {
+            throw new Error(`can't find loader ${key}`);
+        }
     }
     Loader.GetLoader = GetLoader;
 })(Loader = exports.Loader || (exports.Loader = {}));

@@ -8,11 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Trigger
- *
- * 非同步的事件依序觸發機制
- * */
 var Trigger;
 (function (Trigger) {
     function msleep(timeout) {
@@ -29,18 +24,9 @@ var Trigger;
         });
     }
     Trigger.wait = wait;
-    /**
-     * 所有事件儲存在單一的事件池進行統一管理
-     */
     let Pool;
     (function (Pool) {
-        /**
-         * 事件池
-         * */
         const pool = new Map();
-        /**
-         * 移除事件
-         * */
         function removeEvent(eventId) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (pool.has(eventId)) {
@@ -52,9 +38,6 @@ var Trigger;
             });
         }
         Pool.removeEvent = removeEvent;
-        /**
-         * 取得事件
-         * */
         function getEvent(eventId) {
             return __awaiter(this, void 0, void 0, function* () {
                 if (!pool.has(eventId)) {
@@ -70,9 +53,6 @@ var Trigger;
             });
         }
         Pool.getEvent = getEvent;
-        /**
-         * 新增訂閱
-         * */
         function addSubscribe(eventId, observableFn, isOnce = false, isWaitAsyncFinish = false) {
             return __awaiter(this, void 0, void 0, function* () {
                 let event = yield getEvent(eventId);
@@ -91,9 +71,6 @@ var Trigger;
             });
         }
         Pool.addSubscribe = addSubscribe;
-        /**
-         * 移除訂閱
-         * */
         function removeSubscribe(eventId, filterFn) {
             return __awaiter(this, void 0, void 0, function* () {
                 let event = yield getEvent(eventId);
@@ -104,9 +81,6 @@ var Trigger;
         }
         Pool.removeSubscribe = removeSubscribe;
     })(Pool || (Pool = {}));
-    /**
-     * 觸發程序
-     * */
     let AutoEmit;
     (function (AutoEmit) {
         let list = [];

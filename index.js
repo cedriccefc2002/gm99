@@ -23,13 +23,6 @@ switch (process.platform) {
         break;
 }
 electron_1.app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, 'plugins', pluginName));
-//app.commandLine.appendSwitch('ppapi-flash-version', '17.0.0.169')
-//Hardware accelerated
-// app.commandLine.appendSwitch('ignore-gpu-blacklist', 'true');
-// app.commandLine.appendSwitch('enable-gpu-rasterization', 'true');
-// app.commandLine.appendSwitch('enable-zero-copy', 'true');
-// app.commandLine.appendSwitch('disable-software-rasterizer', 'true');
-//Disable Hardware Acceleration
 electron_1.app.disableHardwareAcceleration();
 electron_1.app.on('ready', () => __awaiter(this, void 0, void 0, function* () {
     let win = new electron_1.BrowserWindow({
@@ -40,8 +33,5 @@ electron_1.app.on('ready', () => __awaiter(this, void 0, void 0, function* () {
             defaultEncoding: "UTF-8"
         }
     });
-    //check gpu status
-    //win.loadURL(`chrome://gpu`);
     win.loadURL(`file://${__dirname}/index.html`);
-    //win.webContents.openDevTools();
 }));
