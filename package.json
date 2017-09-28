@@ -16,10 +16,16 @@
   "devDependencies": {
     "@types/electron": "^1.6.10",
     "@types/jquery": "^3.2.12",
-    "@types/node": "^8.0.30",
+    "@types/knockout": "^3.4.45",
+    "@types/node": "^8.0.31",
+    "@types/react": "^16.0.7",
+    "@types/react-dom": "^15.5.5",
     "@types/webpack": "^3.0.11",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
+    "knockout": "^3.4.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "typescript": "^2.5.2",
     "webpack": "^3.6.0"
   }
